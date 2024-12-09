@@ -19,6 +19,8 @@ import pandas as pd
 from pandas_profiling import ProfileReport # Powerful Automatic EDA
 import matplotlib.pyplot as plt
 import seaborn as sns
+import requests
+from io import StringIO
 from sklearn import datasets 
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.linear_model import LinearRegression
@@ -31,8 +33,6 @@ from sklearn.metrics import accuracy_score, mean_absolute_error, mean_squared_er
 df = pd.read_csv('path_of_your_csv_files.csv')
 
 # If you are fetching csv file from the URL
-import requests
-from io import StringIO
 url = "https://raw.githubusercontent.com/cs109/2014_data/master/countries.csv"
 headers = {"USer-Agent": "Mozilla/5.0 (Macintosh; Intel Max OS X 10.14; rv:66.0) Gecko/20100101 FireFox/66.0"}
 req = requests.get(url, headers = headers)
