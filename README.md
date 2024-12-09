@@ -20,4 +20,4 @@ This repository contains the notebooks from the basic level to the production le
 - Gradient Boosting
 - etc...
 
-All General Code Snippet: [machine-learning.py](https://gist.github.com/Vishal-sys-code/6d3c26946358fbedd14e557ac5463748)
+All General Code Snippet: [machine-learning.py](https://github.com/Vishal-sys-code/machine-learning-complete-guide/blob/main/machine-learning.py)
