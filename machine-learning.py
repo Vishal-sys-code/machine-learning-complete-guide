@@ -7,9 +7,10 @@
 5. STOCHASTIC GRADIENT DESCENT ALGORITHM
 """
 
-# Important import necessary before starting a notebook
+# ---------------------------- IMPORTANT IMPORT NECESSARY BEFORE STARTING A NOTEBOOK ----------------------------
 import numpy as np
 import pandas as pd
+from pandas_profiling import ProfileReport # Powerful Automatic EDA
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn import datasets 
@@ -17,6 +18,170 @@ from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.linear_model import LinearRegression
 from sklearn.datasets import make_regression, make_classification
 from sklearn.metrics import accuracy_score, mean_absolute_error, mean_squared_error, root_mean_squared_error, r2_score
+
+# ---------------------------- PLAYING WITH DATA [PANDAS] ----------------------------
+
+# If you have local csv file
+df = pd.read_csv('path_of_your_csv_files.csv')
+
+# If you are fetching csv file from the URL
+import requests
+from io import StringIO
+url = "https://raw.githubusercontent.com/cs109/2014_data/master/countries.csv"
+headers = {"USer-Agent": "Mozilla/5.0 (Macintosh; Intel Max OS X 10.14; rv:66.0) Gecko/20100101 FireFox/66.0"}
+req = requests.get(url, headers = headers)
+data = StringIO(req.text)
+pd.read_csv(data)
+
+"""
+Pandas Parameter to play with data. When to use:
+# 1. sep Parameter:
+# Use this when the data is separated by a custom delimiter (other than commas).
+# Example: sep="\t" for tab-separated values, or sep="|" for pipe-separated values.
+
+# 2. index_col Parameter:
+# Use this when you want one or more columns to be used as the index of the DataFrame.
+# Example: index_col=0 to set the first column as the index.
+
+# 3. header Parameter:
+# Use this to specify which row to use as column names (header).
+# Default is header=0 (first row). For example, header=1 if the header is in the second row.
+
+# 4. usecols Parameter:
+# Use this to read specific columns from the dataset.
+# Example: usecols=["col1", "col2"] to only read the specified columns.
+
+# 5. squeeze Parameter:
+# Use this when you want to reduce the output from a DataFrame to a Series, 
+# if only a single column is selected. Example: squeeze=True.
+
+# 6. skiprows / nrows Parameters:
+# - skiprows: Skip specific rows at the beginning. Example: skiprows=5 to skip the first 5 rows.
+# - nrows: Limit the number of rows to load. Example: nrows=100 to load only the first 100 rows.
+
+# 7. encoding Parameter:
+# Use this when your dataset has a specific encoding (e.g., UTF-8, ISO-8859-1).
+# It's especially useful for datasets with special characters or non-English text.
+
+# 8. skip_bad_lines (or error_bad_lines in older versions):
+# Use this when your data contains corrupt lines that you want to ignore while loading.
+# Example: error_bad_lines=False to skip bad lines.
+
+# 9. dtype Parameter:
+# Use this to specify the data types for certain columns, especially if pandas' default type inference is incorrect.
+# Example: dtype={"age": int, "salary": float}.
+
+# 10. Handling Dates:
+# Use parse_dates to automatically convert date columns to datetime objects.
+# You can also define a custom date parser with date_parser if needed.
+# Example: parse_dates=["date_column"] to parse a date column.
+
+# 11. converters Parameter:
+# Use this to apply custom functions to columns while reading the file.
+# Example: converters={"column_name": custom_function} to transform data on the fly.
+
+# 12. na_values Parameter:
+# Use this to specify additional strings to be treated as missing (NaN) values.
+# Example: na_values=["N/A", "NULL"] to treat these strings as NaN.
+
+# 13. Loading Huge Datasets in Chunks:
+# Use chunksize to load large datasets in smaller, manageable parts.
+# Example: chunksize=1000 to load data in chunks of 1000 rows at a time.
+# This helps reduce memory usage and handle large files efficiently.
+"""
+
+# ---------------------------- ASKING 7 QUESTIONS WITH DATA BEFORE PERFORMING EDA ----------------------------
+"""
+1. How big is the data?  => df.shape
+2. How does the data look like? => df.head()
+3. What is the datatype of the columns? => df.info()
+4. Are there any missing values? => df.isnull().sum() and df.isnull().mean()
+5. How does the data looks like mathematically? => df.describe()
+6. Are there any duplicate value? => df.duplicated().sum()
+7. How is the correlation between columns? => df.corr()
+"""
+# 1. How big is the data?
+df.shape
+# 2. How does the data look like?
+df.head()
+# 3. What is the datatype of the columns?
+df.info()
+# 4. Are there any missing values?
+df.isnull().sum()
+# 5. How does the data looks like mathematically?
+df.describe()
+# 6. Are there any duplicate value?
+df.duplicate().sum()
+# 7. How is the correlation between columns?
+df.corr()
+
+# ---------------------------- EXPLORATORY DATA ANALYSIS ----------------------------
+"""
+Why we need Exploratory Data Analysis(EDA)?
+-> We need EDA to understand and visualise the important characteristics of the data.
+-> It also detect anamolies, testing assumptions and generate hypothesis.
+
+EDA is of three type: Univariate Analysis, Bivariate Analysis and Multi-variate Analysis.
+- Univariate Analysis: When we do independent analysis on 1 columns
+- Bivariate Analysis: When we do independent analysis on 2 columns
+- Multi-variate Analysis: When we do independent analysis on more than 2 columns
+
+There are two types of data: Categorical and Numerical
+- Numerical: height, weight, age, ...etc
+- Categorical: country, gender, nationality, ...etc
+
+Actually in EDA we plot the data distributions to check if the data or the column 
+have the normal distribution or not. If they dont have the normal distribution 
+then we perform the Feature Engineering on it to transform that data. 
+
+We plot the Probability Density Function (PDF).
+- if PDF is normal distributed then no need to change or transform it
+- else we need to apply the feature engineering to transform the data.
+
+NOTE: We actually do mostly Bivariate and MultiVariate Analysis.
+
+For Univariate Analysis we do the plots like:
+1. For Categorical Data: Countplot and Piechart
+2. For Numerical Data: Histogram, DistPlot, BoxPlot.
+
+For Bivariate or Multivariate Analysis we do the plots like:
+We plot the data in the form of the (Numerical - Numerical), (Numerical - Categorical), (Categorical - Categorical)
+We can say as => (N - N), (N - C), (C - C)
+
+1. ScatterPlot: (Numerical - Numerical)
+2. BarPlot:     (Numerical - Categorical)
+3. BoxPlot:     (Numerical - Categorical)
+4. DistPlot:    (Numerical - Categorical)
+5. HeatMap:     (Categorical - Categorical)
+6. ClusterMap:  (Categorical - Categorical)
+7. PairPlot:    (Numerical - Numerical)
+8. LinePlot:    (Numerical - Numerical)
+
+(Numerical - Numerical): ScatterPlot, LinePlot, PairPlot
+(Numerical - Categorical): BarPlot, BoxPlot, DistPlot
+(Categorical - Categorical): HeatMap, ClusterMap
+
+IMPORTANT NOTES:
+If you find any probability distribution function plotting as the normal distribution, then it doesn't need to be transformed by the feature engineering.
+If you find any probability distribution function plotting as the skewness distribution, then it need to be transformation with the help of the feature engineering.
+
+You will get some of the Normal distributed data to be contained as the: missing values. This need to be fixed in feature engineering no doubt in this.
+
+Normal Distribution: A good curve in the middle of the plot
+Skewness Distribution: A curve that is shifted towards more to the left or to the right. 
+
+
+PANDAS CONTAIN A VERY GREAT HANDY METHOD THAT DO THE EDA AUTOMATICALLY IN DETAILED WAY. IT IS KNOWN AS THE PANDAS PROFILING.
+"""
+
+# ---------------------------- PANDAS PROFILING [Automatic EDA] ----------------------------
+df = pd.read_csv("local_csv_path.csv")
+profile = ProfileReport(df, title = "Pandas Profiling Report", explorative = True)
+profile.to_file('automated_eda.html')
+
+
+# ---------------------------- FEATURE ENGINEERING ----------------------------
+
 
 # ---------------------------- LINEAR REGRESSION [1 DIMENSIONAL] ----------------------------
 # Custom Linear Regression [1 Dimensional]
