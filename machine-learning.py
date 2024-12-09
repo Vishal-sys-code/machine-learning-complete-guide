@@ -1,4 +1,10 @@
 """
+------------------ IMPLEMENTED DATA ANALYSIS ------------------
+- IMPORTED IMPORTANT LIBRARIES
+- PLAYING WITH DATA
+- EXPLORATORY DATA ANALYSIS
+- FEATURE ENGINEERING
+
 ------------------ IMPLEMENTED ALGORITHMS ------------------
 1. LINEAR REGRESSION [1 DIMENSIONAL]
 2. MULTI LINEAR REGRESSION [HIGHER DIMENSIONAL]
@@ -7,7 +13,7 @@
 5. STOCHASTIC GRADIENT DESCENT ALGORITHM
 """
 
-# ---------------------------- IMPORTANT IMPORT NECESSARY BEFORE STARTING A NOTEBOOK ----------------------------
+# ---------------------------- IMPORTANT IMPORT NECESSARY LIBRARIES BEFORE STARTING A NOTEBOOK ----------------------------
 import numpy as np
 import pandas as pd
 from pandas_profiling import ProfileReport # Powerful Automatic EDA
