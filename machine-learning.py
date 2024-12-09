@@ -1,3 +1,12 @@
+"""
+------------------ IMPLEMENTED ALGORITHMS ------------------
+1. LINEAR REGRESSION [1 DIMENSIONAL]
+2. MULTI LINEAR REGRESSION [HIGHER DIMENSIONAL]
+3. GRADIENT DESCENT ALGORITHM
+4. BATCH GRADIENT DESCENT ALGORITHM
+5. STOCHASTIC GRADIENT DESCENT ALGORITHM
+"""
+
 # Important import necessary before starting a notebook
 import numpy as np
 import pandas as pd
@@ -140,7 +149,7 @@ class BatchGradientDescentRegressor:
         self.coefficient = np.ones(X_train.shape[1])
         # Step 2: Fixing the values of the epochs and the learning rates.
         for i in range(self.epochs):
-            # Step 3: Finding the loss slope with repect to the intercepts and the coefficient respectively.
+            # Step 3: Finding the loss slope with respect to the intercepts and the coefficient respectively.
             # Step 3.1: Calculating Y_hat
             y_hat = np.dot(X_train, coefficient) + intercept
             # Step 3.2: Updating the values of the intercept [beta_0]
@@ -153,3 +162,66 @@ class BatchGradientDescentRegressor:
         print("Coefficient: ", coefficient)
     def predict():
         return (np.dot(X_train, self.coefficient) + self.intercept)
+
+# ---------------------------- STOCHASTIC GRADIENT DESCENT ALGORITHM (The most used Algorithm) ----------------------------    
+"""
+Coded Algorithm:
+- coefficients = beta_1, beta_2, beta_3, beta_4, ........., beta_n = Slope
+- intercepts = beta_0 = Intercept
+- X_train.shape[0] = Rows and X_train.shape[1] = Columns
+- X_train.shape[0] = N and X_train.shape[1] = all the coefficients
+- coefficients = np.ones(X_train.shape[1]) | intercept = 0
+- Two nested loops => one for epochs and one for the rows or N 
+  for i in range(epochs):
+      for j in range(X_train.shape[0]):
+          # CODE OF SGD
+- Random Index Selection:
+    idx = np.random.randint(0, X_train.shape[0]) 
+- In general => (y = y_train), (y_hat = np.dot(X_train, coefficient) + intercept)
+  In SGD -> X_train = X_train[idx] and now replace it.
+  y_hat_sgd = np.dot(X_train[idx], coefficient) + intercept
+- Loss Calculation:
+    loss_calculation = y_train[idx] - y_hat_sgd
+- Gradient Calculation:
+    loss_slope_with_respect_to_intercept = -2 * (loss_calculation)
+    loss_slope_with_respect_to_coefficient = -2 * np.dot(loss_calculation, X_train[idx])
+- Updation of the Intercept and the Coefficients:
+    intercept_new = intercept_old - learning_rate * loss_slope_with_respect_to_intercept
+    coefficient_new = coefficient_old - learning_rate * loss_slope_with_respect_to_coefficient 
+- Prediction => (Y = mX + C) => y_pred = np.dot(coefficient, X_test) + intercept
+    
+STOCHASTIC GRADIENT DESCENT ALGORITHM:
+Step 1: Having a Random value of the coefficient = 1 and the intercepts = 0. [beta_0 = 0 and beta_1, beta_2, ..., beta_n = 1]
+Step 2: Random Index Selection -> Selecting one random data point from the training set. (X_train.shape[0])
+Step 3: Prediction Calculation -> Calculate the value of y_hat. => (Follow the formula of y_hat_sgd)
+Step 4: Loss Calculation -> loss_calculation
+Step 5: Gradient Calculation -> Calculate the loss slope with respect to both the intercept and coefficients
+Step 6: Updation of the Intercept and the Coefficients:
+        6.1 : intercept_new =  intercept_old - (learning_rate * loss_slope_with_respect_to_intercept)
+        6.2 : coefficient_new = coefficient_old - (learning_rate * loss_slope_with_respect_to_coefficient)
+"""
+
+class StochasticGradientDescentRegressor:
+    def __init__(self, learning_rate, epoch):
+        self.intercept = None
+        self.coefficient = None
+        self.learning_rate = learning_rate
+        self.epoch = epoch
+    def fit(self, X_train, y_train):
+        self.intercept = 0
+        self.coefficient = np.ones(X_train.shape[1])
+        for i in range(self.epoch):
+            for j in range(X_train.shape[0]):
+                idx = np.random.randint(0, X_train.shape[0])
+                y_hat_sgd = np.dot(X_train[idx], self.coefficient) + self.intercept
+                loss_calculation = y_train[idx] - y_hat_sgd
+                loss_slope_with_respect_to_intercept = -2 * (loss_calculation)
+                loss_slope_with_respect_to_coefficient = -2 * np.dot(loss_calculation, X_train[idx])
+                self.intercept = self.intercept - learning_rate * loss_slope_with_respect_to_intercept
+                self.coefficient = self.coefficient - learning_rate * loss_slope_with_respect_to_coefficient
+        print("Coefficients: ", self.coefficient)
+        print("Intercept: ", self.intercept)
+                
+    def predict(self, X_test):
+        y_pred = np.dot(X_test, self.coefficient) + self.intercept
+        return f"Prediction: {y_pred}"
