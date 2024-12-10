@@ -11,6 +11,8 @@
 3. GRADIENT DESCENT ALGORITHM
 4. BATCH GRADIENT DESCENT ALGORITHM
 5. STOCHASTIC GRADIENT DESCENT ALGORITHM
+6. MINI BATCH GRADIENT DESCENT ALGORITHM
+7. POLYNOMIAL REGRESSION
 """
 
 # ---------------------------- IMPORTANT IMPORT NECESSARY LIBRARIES BEFORE STARTING A NOTEBOOK ----------------------------
@@ -396,3 +398,92 @@ class StochasticGradientDescentRegressor:
     def predict(self, X_test):
         y_pred = np.dot(X_test, self.coefficient) + self.intercept
         return f"Prediction: {y_pred}"
+
+# ---------------------------- MINI BATCH GRADIENT DESCENT ALGORITHM ----------------------------
+
+"""
+Coded Algorithm:
+- coefficients = beta_1, beta_2, beta_3, beta_4, ........., beta_n = Slope
+- intercepts = beta_0 = Intercept
+- X_train.shape[0] = Rows and X_train.shape[1] = Columns
+- X_train.shape[0] = N and X_train.shape[1] = all the coefficients
+- coefficients = np.ones(X_train.shape[1]) | intercept = 0
+- Two nested loops => one for epochs and one for the rows or N 
+  for i in range(epochs):
+      for j in range(int(X_train.shape[0]/batch_size)):
+          # CODE OF MBGD
+- Random Selection of the Subsets of indices from the training data [Random Sampling of Mini Batch]:
+    idx = random.sample(range(X_train.shape[0]), batch_size)
+- Calculation of y_hat_mbgd:
+    In general => (y = y_train), (y_hat = np.dot(X_train, coefficient) + intercept)
+    However, In MBGD: X_train = X_train[idx]
+    y_hat_mbgd = np.dot(X_train[idx], coefficient) + intercept
+- Calculation of loss:
+    loss_calculation = (y_train[idx] - y_train)
+- Gradients Calculation:
+    loss_slope_with_respect_to_intercept = -2 * np.mean(loss_calculation)
+    loss_slope_with_respect_to_coefficient = -2 * np.dot(loss_calculation, X_train[idx])
+- Update the Coefficients and the Intercepts:
+    intercept_new = intercept_old - (learning_rate * loss_slope_with_respect_to_intercept)
+    coefficient_new = coefficient_old - (learning_rate * loss_slope_with_respect_to_coefficient)
+- Prediction => (Y = mX + C) => y_pred = np.dot(coefficient, X_test) + intercept
+
+MINI BATCH GRADIENT DESCENT ALGORITHM:
+Step 1: Having a Random value of the coefficient = 1 and the intercepts = 0. [beta_0 = 0 and beta_1, beta_2, ..., beta_n = 1]
+Step 2: Random Selection for Subset of Indices -> Selecting random set of data points from the training set. (X_train.shape[0]/batch_size)
+Step 3: Prediction Calculation -> Calculate the value of y_hat. => (Follow the formula of y_hat_mbgd)
+Step 4: Loss Calculation -> loss_calculation
+Step 5: Gradient Calculation -> Calculate the loss slope with respect to both the intercept and coefficients
+Step 6: Updation of the Intercept and the Coefficients:
+        6.1 : intercept_new =  intercept_old - (learning_rate * loss_slope_with_respect_to_intercept)
+        6.2 : coefficient_new = coefficient_old - (learning_rate * loss_slope_with_respect_to_coefficient)
+"""
+class MiniBatchGradientDescentRegressor:
+    def __init__(self, learning_rate, epochs, bactch_size):
+        self.intercept = None
+        self.coefficient = None
+        self.learning_rate = learning_rate
+        self.epochs = epochs
+        self.batch_size = batch_size
+    def fit(self, X_train, y_train):
+        self.intercept = 0
+        self.coefficient = np.ones(X_train.shape[1])
+        for i in range(self.epochs):
+            for j in range(int(X_train.shape[0]/self.batch_size)):
+                idx = random.sample(range(X_train.shape[0]), self.batch_size)
+                y_hat_mbgd = np.dot(X_train[idx], self.coefficient) + self.intercept
+                loss_calculation = (y_train[idx] - y_hat_mbgd)
+                loss_slope_with_respect_to_intercept = -2 * np.mean(loss_calculation)
+                loss_slope_with_respect_to_coefficient = -2 * np.dot((loss_calculation), X_train[idx])
+                self.intercept = self.intercept - (self.learning_rate * loss_slope_with_respect_to_intercept)
+                self.coefficient = self.coefficient - (self.learning_rate * loss_slope_with_respect_to_coefficient)
+        print("Coefficients: ", self.coefficient)
+        print(" ")
+        print("Intercept: ", self.intercept)
+    def predict(self, X_test):
+        y_pred = np.dot(X_test, self.coefficient) + self.intercept
+        return y_pred
+
+# ---------------------------- POLYNOMIAL REGRESSION ----------------------------
+
+def polynomial_regression(degree):
+    X_new = np.linspace(-3, 3, 100).reshape(100, 1)
+    X_new_poly = poly.transform(X_new)
+    polybig_features = PolynomialFeatures(degree = degree, include_bias = False)
+    std_scaler = StandardScaler()
+    lin_reg = LinearRegression()
+    polynomial_regression = Pipeline([
+        ('poly_features', polybig_features),
+        ('std_scaler', std_scaler),
+        ('lin_reg', lin_reg)
+    ])
+    polynomial_regression.fit(X, y)
+    y_newbig = polynomial_regression.predict(X_new)
+    plt.plot(X_new, y_newbig, 'r', label = "Degree" + str(degree), linewidth = 2)
+    plt.plot(X_train, y_train, 'b.', linewidth = 3)
+    plt.plot(X_test, y_test, 'g.', linewidth = 3)
+    plt.xlabel("X")
+    plt.ylabel("Y")
+    plt.axis([-3, 3, 0, 10])
+    plt.legend(loc = "upper left")
+    plt.show()
