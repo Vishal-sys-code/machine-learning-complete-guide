@@ -363,7 +363,7 @@ Coded Algorithm:
     coefficient_new = coefficient_old - learning_rate * loss_slope_with_respect_to_coefficient 
 - Prediction => (Y = mX + C) => y_pred = np.dot(coefficient, X_test) + intercept
     
-STOCHASTIC GRADIENT DESCENT ALGORITHM:
+STOCHASTIC GRADIENT DESCENT PSEUDOCODE:
 Step 1: Having a Random value of the coefficient = 1 and the intercepts = 0. [beta_0 = 0 and beta_1, beta_2, ..., beta_n = 1]
 Step 2: Random Index Selection -> Selecting one random data point from the training set. (X_train.shape[0])
 Step 3: Prediction Calculation -> Calculate the value of y_hat. => (Follow the formula of y_hat_sgd)
@@ -428,9 +428,10 @@ Coded Algorithm:
     coefficient_new = coefficient_old - (learning_rate * loss_slope_with_respect_to_coefficient)
 - Prediction => (Y = mX + C) => y_pred = np.dot(coefficient, X_test) + intercept
 
-MINI BATCH GRADIENT DESCENT ALGORITHM:
+MINI BATCH GRADIENT DESCENT PSEUDOCODE:
+Note:- A new variable will be introduced: batch_size. [A user input]
 Step 1: Having a Random value of the coefficient = 1 and the intercepts = 0. [beta_0 = 0 and beta_1, beta_2, ..., beta_n = 1]
-Step 2: Random Selection for Subset of Indices -> Selecting random set of data points from the training set. (X_train.shape[0]/batch_size)
+Step 2: Random Selection for Subset of Indices -> Selecting the random set of data points from the training set. (X_train.shape[0]/batch_size)
 Step 3: Prediction Calculation -> Calculate the value of y_hat. => (Follow the formula of y_hat_mbgd)
 Step 4: Loss Calculation -> loss_calculation
 Step 5: Gradient Calculation -> Calculate the loss slope with respect to both the intercept and coefficients

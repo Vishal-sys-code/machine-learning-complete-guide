@@ -1,4 +1,4 @@
-# machine-learning-notebooks
+# machine-learning-complete-guide
 This repository contains the notebooks from the basic level to the production level of the machine learning process. This helps to understand how to approach the problem and also the syntaxes for the data preprocessing. 
 
 # Table of Contents
