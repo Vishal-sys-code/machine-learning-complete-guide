@@ -569,7 +569,7 @@ class CustomRidgeRegressionMultiDimensional:
         return np.dot(X_test, self.coefficient) + self.intercept
 
 
-# If you want the exact result as the sklearn give then use a small change
+# If you want the exact result as the sklearn create (without any precision error) then use a small change
 class CustomRidgeRegressionMultiDimensional_Sklearn:
     def __init__(self, alpha = 0.1):
         self.alpha = alpha
