@@ -489,3 +489,143 @@ def polynomial_regression(degree):
     plt.axis([-3, 3, 0, 10])
     plt.legend(loc = "upper left")
     plt.show()
+
+# ---------------------------- RIDGE REGRESSION [2 Dimensional] ----------------------------
+"""
+Ridge Regression in 2 dimensional is similar to the Simple Linear Regression. However there is term added in the Loss Function of the Ridge Regression which is the penality term.
+Penalty term = λ ||w||^2. Here, w is the coefficients. Previously we have denoted w as coefficients. It actually work like weights.
+The λ is the hyperparameter which is the regularization parameter. It is the hyperparameter which is used to control the strength of the penalty term. If the λ is high, then the penalty term is high and the model is regularized heavily. If the λ is low, then the penalty term is low and the model is regularized lightly.
+
+Formula:
+penalty_term =  λ (We call it as alpha)
+numerator = summation_1toN ((y_i - y_mean) * (x_i - x_mean))
+denominator = summation_1toN ((x_i - x_mean) ^ 2)
+m (slope) = [(numerator) / (denomenator + penalty_term)]
+b (intercept) = y_mean - m * (x_mean)
+"""
+
+class CustomSimpleRidgeRegression:
+    def __init__(self, alpha):
+        self.alpha = alpha
+        self.coefficient = None
+        self.intercept = None
+    def fit(self, X_train, X_test):
+        numerator = 0 
+        denominator = 0 
+        for i in range(X_train.shape[0]):
+            numerator = numerator + ((y_train[i] - y_train.mean()) * (X_train[i] - X_train.mean()))
+            denominator = denominator + (X_train[i] - X_train.mean()) ** 2
+        self.coefficient = numerator / (denominator + self.alpha)
+        self.intercept = y_train.mean() - (self.coefficient * X_train.mean())
+        print("Coefficient: ", self.coefficient)
+        print("Intercept: ", self.intercept)
+    def predict(self, X_test):
+        y_pred = 0 
+        for i in range(X_train.shape[0]):
+            y_pred = y_pred + np.dot(X_test[i], self.coefficinet) + self.intercept[i]
+        return y_pred
+
+# ---------------------------- RIDGE REGRESSION [N Dimensional] ----------------------------
+"""
+Formula:
+I = Identity Matrix
+w = (X_transpose.X + λ.I)^-1 (X_transpose.Y)
+
+First_Term = (X_transpose.X + λ.I)^-1 => np.linalg.inv(np.dot(X_train.T, X_train) + np.dot(self.alpha, identity_matrix)
+Second_Term = (X_transpose.Y) => np.dot(X_train.T, y_train)
+
+w = First_Term + Second_Term
+
+
+
+Common Terms:
+- This is same as the Higher Dimensional Linear Regression however here is an additional term of the penalty.
+- Inserting the 1's to the first row of the X_train
+  - X_train = np.insert(X_train, 0, 1, axis = 1)
+- Identity matrix = np.identity(X_train.shape[1])
+- penalty_term = self.alpha * identity_matrix
+- Calculate W from the above numpy explanation
+- Set the values of the coefficient and intercept:
+    - coefficient = w[1:]
+    - intercept = w[0]
+- Prediction => Y = mX + C => (coefficient, X_train) + intercept
+"""
+
+class CustomRidgeRegressionMultiDimensional:
+    def __init__(self, alpha = 0.1):
+        self.alpha = alpha
+        self.coefficient = None
+        self.intercept = None
+    def fit():
+        X_train = np.insert(X_train, 0, 1, axis = 1)
+        identity_matrix = np.identity(X_train.shape[1])
+        w = np.linalg.inv(np.dot(X_train.T,X_train) + np.dot(self.alpha, identity_matrix)).dot(X_train.T).dot(y_train)
+        self.intercept = w[0]
+        self.coefficient = w[1:]
+        print('Coefficient: ', self.coefficient)
+        print('Intercept: ', self.intercept)
+    def predict():
+        return np.dot(X_test, self.coefficient) + self.intercept
+
+
+# If you want the exact result as the sklearn give then use a small change
+class CustomRidgeRegressionMultiDimensional_Sklearn:
+    def __init__(self, alpha = 0.1):
+        self.alpha = alpha
+        self.coefficient = None
+        self.intercept = None
+    def fit():
+        X_train = np.insert(X_train, 0, 1, axis = 1)
+        identity_matrix = np.identity(X_train.shape[1])
+        identity_matrix[0][0] = 0 # Small Change
+        w = np.linalg.inv(np.dot(X_train.T,X_train) + np.dot(self.alpha, identity_matrix)).dot(X_train.T).dot(y_train)
+        self.intercept = w[0]
+        self.coefficient = w[1:]
+        print('Coefficient: ', self.coefficient)
+        print('Intercept: ', self.intercept)
+    def predict():
+        return np.dot(X_test, self.coefficient) + self.intercept
+
+
+# ---------------------------- GRADIENT DESCENT FOR RIDGE REGRESSION ----------------------------
+"""
+It is same as we did in the previous Gradient Descents:
+
+Coded Algorithm:
+- coefficients = w_1, w_2, w_3, w_4, ........., w_n = Slope
+- intercepts = w_0 = Intercept
+- X_train.shape[0] = Rows and X_train.shape[1] = Columns
+- X_train.shape[0] = N and X_train.shape[1] = all the Coefficients
+- intercept = 0, coefficient = np.ones(X_train.shape[1])
+- w = np.insert(self.coefficient, 0, self.intercept)
+- X_train = np.insert(X_train, 0, 1, axis = 1)
+- One Loop in the range of the epochs
+  - Formula of w = (X_transpose . X . w) - (X_transpose * Y) + (alpha * w)
+  - derivative_of_w = (np.dot(X_train.T, X_train).dot(w)) - np.dot(X_train.T, y_train) + (alpha * w)
+  - w_new = w_old - (learning_rate * derivative_of_w)
+- intercept = w[0]
+- coefficient = w[1:]
+- Prediction => Y = mx + C => np.dot(X_train * self.coefficient) + self.intercept
+"""
+
+class  CustomGradientDescentRidgeRegression:
+    def __init__(self, epochs, learning_rate, alpha):
+        self.epochs = epochs
+        self.learning_rate = learning_rate
+        self.alpha = alpha
+        self.intercept = None
+        self.coefficient = None
+    def fit(self):
+        self.intercept = 0
+        self.coefficient = np.ones(X_train.shape[1])
+        w = np.insert(self.coefficient, 0, self.intercept)
+        X_train = np.insert(X_train, 0, 1, axis = 1)
+        for i in range(self.epochs):
+            derivative_of_w = (np.dot(X_train.T, X_train).dot(w) - np.dot(X_train.T, y_train) + (self.alpha * w))
+            w = w - (self.learning_rate * derivative_of_w)
+        self.intercept = w[0]
+        self.coefficient = w[1:]
+        print("Coefficient: ", coefficient)
+        print("Intercept: ", intercept)
+    def predict(self):
+        return np.dot(X_test, self.coefficient) + self.intercept
