@@ -200,8 +200,9 @@ class customLinearRegression:
     def fit(self, X_train, y_train):
         numerator = 0
         denomenator = 0
-        numerator = numerator + ((X_train[i]-X_train.mean())(y_train[i]-y_train.mean())) # ((Xi - X') * (Yi - Y'))
-        denomenator = denomenator + ((X_train[i]-X_train.mean) * (X_train[i]-X_train.mean)) # ((Xi - X') * (Xi - X'))
+        for i in range(X_train.shape[0]):
+            numerator = numerator + ((X_train[i]-X_train.mean())(y_train[i]-y_train.mean())) # ((Xi - X') * (Yi - Y'))
+            denomenator = denomenator + ((X_train[i]-X_train.mean) * (X_train[i]-X_train.mean)) # ((Xi - X') * (Xi - X'))
         self.slope = (numerator/denomenator)
         self.intercept = (y_train.mean() - self.slope * (X_train.mean()))
     def predict(self, X_test):
