@@ -19,6 +19,9 @@ In sklearn there are 15 hyperparameters in the Logistic Regression.
 * **n_jobs**: int, default = None. [To use the cores of the CPU].
 * **l1_ratio**: float, default = None.
 
+*******
+
+**NOTES:**
 - For Small datasets, 'liblinear' is a good choice.
 - For large datasets, 'sag' and 'saga' are good choice.
 - For multiclass problems, only 'newton-cg', 'sag', 'saga' and 'lbfgs' handle multinomial loss.
