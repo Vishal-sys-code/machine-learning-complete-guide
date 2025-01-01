@@ -16,5 +16,5 @@ In sklearn there are 15 hyperparameters in the Logistic Regression
 * **verbose:** int, default = 0 {Seeing the results in between the training}
 * **warm_start:** bool, default = False
     * [When set to True, it will start from the place where you left otherwise it will erase the previous solution.]
-* n_jobs: int, default = None. [To use the cores of the CPU].
-* l1_ratio: float, default = None.
+* **n_jobs**: int, default = None. [To use the cores of the CPU].
+* **l1_ratio**: float, default = None.
