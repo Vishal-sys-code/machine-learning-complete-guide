@@ -630,3 +630,9 @@ class  CustomGradientDescentRidgeRegression:
         print("Intercept: ", intercept)
     def predict(self):
         return np.dot(X_test, self.coefficient) + self.intercept
+
+# Elastic Net Regression
+reg = ElasticNet(alpha = 0.005, l1_ratio = 0.9)
+reg.fit(X_train, y_train)
+y_pred = reg.predict(X_test)
+r2_score(y_test, y_pred)
