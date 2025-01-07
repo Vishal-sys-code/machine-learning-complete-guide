@@ -13,7 +13,13 @@
 5. STOCHASTIC GRADIENT DESCENT ALGORITHM
 6. MINI BATCH GRADIENT DESCENT ALGORITHM
 7. POLYNOMIAL REGRESSION
-8. RIDGE REGRESSION [2-DIMENSIONAL, N-DIMENSIONAL, GRADIENT DESCENT]
+8. RIDGE REGRESSION
+9. LASSO REGRESSION
+10. ELASTIC NET REGRESSION
+11. LOGISTIC REGRESSION
+12. SOFTMAX REGRESSION
+13. POLYNOMIAL LOGISTIC REGRESSION
+14. CLASSIFICATION METRICS
 """
 
 # ---------------------------- IMPORTANT IMPORT NECESSARY LIBRARIES BEFORE STARTING A NOTEBOOK ----------------------------
@@ -37,7 +43,7 @@ df = pd.read_csv('path_of_your_csv_files.csv')
 
 # If you are fetching csv file from the URL
 url = "https://raw.githubusercontent.com/cs109/2014_data/master/countries.csv"
-headers = {"USer-Agent": "Mozilla/5.0 (Macintosh; Intel Max OS X 10.14; rv:66.0) Gecko/20100101 FireFox/66.0"}
+headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Max OS X 10.14; rv:66.0) Gecko/20100101 FireFox/66.0"}
 req = requests.get(url, headers = headers)
 data = StringIO(req.text)
 pd.read_csv(data)
