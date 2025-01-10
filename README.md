@@ -52,6 +52,12 @@ This repository contains the notebooks from the basic level to the production le
 - Ensemble Learning
   - **Voting Ensemble:** Classification and Regression
   - **Bagging Ensemble:** Implementation, Classification and Regression
+  - Random Forest Implementation
+  - Bias Variance Trade-Off in Random Forest
+  - Bagging vs Random Forest
+  - Random Forest Hyper Parameter Tuning
+  - Out Of Bag Score [OOB Score]
+  - Feature Importance Using Random Forest
 
 
 All General Code Snippet: [machine-learning.py](https://github.com/Vishal-sys-code/machine-learning-complete-guide/blob/main/machine-learning.py)
