@@ -67,3 +67,5 @@ This repository contains the notebooks from the basic level to the production le
 
 
 All General Code Snippet: [machine-learning.py](https://github.com/Vishal-sys-code/machine-learning-complete-guide/blob/main/machine-learning.py)
+
+Machine Learning Templates [ReadMe]: [Machine_Learning_Template](https://github.com/Vishal-sys-code/machine-learning-complete-guide/tree/main/Machine%20Learning%20Templates)
