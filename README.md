@@ -1,5 +1,5 @@
 # machine-learning-complete-guide
-This repository contains the notebooks from the basic level to the production level of the machine learning process. This helps to understand how to approach the problem and also the syntaxes for the data preprocessing. 
+This repository contains the notebooks from the basic level to the production level of the machine learning process. This helps to understand how to approach the problem and the syntaxes for the data preprocessing. 
 
 # Table of Contents
 - Python Classes
@@ -52,12 +52,18 @@ This repository contains the notebooks from the basic level to the production le
 - Ensemble Learning
   - **Voting Ensemble:** Classification and Regression
   - **Bagging Ensemble:** Implementation, Classification and Regression
+- Random Forest
   - Random Forest Implementation
   - Bias Variance Trade-Off in Random Forest
   - Bagging vs Random Forest
   - Random Forest Hyper Parameter Tuning
   - Out Of Bag Score [OOB Score]
   - Feature Importance Using Random Forest
+- AdaBoost Classifier
+  - AdaBoost Algorithm Implementation
+  - AdaBoost Hyperparameters [Tuning & Implementing GridSearchCV]
+- K-Means Clustering
+  - K-Means Clustering using `sklearn or scikit-learn` and Elbow Method
 
 
 All General Code Snippet: [machine-learning.py](https://github.com/Vishal-sys-code/machine-learning-complete-guide/blob/main/machine-learning.py)
