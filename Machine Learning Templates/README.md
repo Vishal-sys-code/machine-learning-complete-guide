@@ -19,4 +19,4 @@ These tools are fundamental to training many types of ML models, particularly in
 ## Table of Contents
 - Data Visualisation Implementation
 - Feature Engineering Implementation
-- ML Algorithms Implementations
+- Machine Learning Algorithms Implementation
