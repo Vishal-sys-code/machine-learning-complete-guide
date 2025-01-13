@@ -1,5 +1,11 @@
 # machine-learning-complete-guide
-This repository contains the notebooks from the basic level to the production level of the machine learning process. This helps to understand how to approach the problem and the syntaxes for the data preprocessing. 
+This repository contains the notebooks from the basic level to the production level of the machine learning process. This helps to understand how to approach the problem and the syntaxes for the data preprocessing.
+
+
+<div align="center">
+  <b>THE COMPLETE MACHINE LEARNING</b>
+</div>
+
 
 # Table of Contents
 - Python Classes
@@ -67,3 +73,5 @@ This repository contains the notebooks from the basic level to the production le
 
 
 All General Code Snippet: [machine-learning.py](https://github.com/Vishal-sys-code/machine-learning-complete-guide/blob/main/machine-learning.py)
+
+Machine Learning Templates [ReadMe]: [Machine_Learning_Template](https://github.com/Vishal-sys-code/machine-learning-complete-guide/tree/main/Machine%20Learning%20Templates)
