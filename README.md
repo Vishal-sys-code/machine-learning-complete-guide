@@ -77,6 +77,10 @@ This repository contains the notebooks from the basic level to the production le
   - Implementing Gradient Boosting [Step by Step Approach]
 - K Nearest Neighbors [Lazy Propagation]
   - Implementation of K - Nearest Neighbor
+- Imbalanced Dataset
+  - Implementation of Imbalanced Dataset
+  - Random Sampling: OverSampling and UnderSampling
+  - Implementation of SMOTE Analysis for Imbalanced Dataset
 
 All General Code Snippet: [machine-learning.py](https://github.com/Vishal-sys-code/machine-learning-complete-guide/blob/main/machine-learning.py)
 
