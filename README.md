@@ -65,13 +65,23 @@ This repository contains the notebooks from the basic level to the production le
   - Random Forest Hyper Parameter Tuning
   - Out Of Bag Score [OOB Score]
   - Feature Importance Using Random Forest
-- AdaBoost Classifier
+- AdaBoost Classifier [Type of Boosting Algorithm]
   - AdaBoost Algorithm Implementation
   - AdaBoost Hyperparameters [Tuning & Implementing GridSearchCV]
 - K-Means Clustering
   - K-Means Clustering using `sklearn or scikit-learn` and Elbow Method
-
+  - Implementation of K-Means from Scratch
+  - Hierarchical Clustering (Implementation of Agglomerative Clustering)
+  - Implementation of DBSCAN Clustering (for any shape of clusters)
+- Gradient Boosting [Type of Boosting Algorithm]
+  - Implementing Gradient Boosting [Step by Step Approach]
+- K Nearest Neighbors [Lazy Propagation]
+  - Implementation of K - Nearest Neighbor
 
 All General Code Snippet: [machine-learning.py](https://github.com/Vishal-sys-code/machine-learning-complete-guide/blob/main/machine-learning.py)
 
 Machine Learning Templates [ReadMe]: [Machine_Learning_Template](https://github.com/Vishal-sys-code/machine-learning-complete-guide/tree/main/Machine%20Learning%20Templates)
+
+
+## TODO
+- Publishing notes on each algorithm step by step.
