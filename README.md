@@ -12,7 +12,7 @@ This repository contains the notebooks from the basic level to the production le
   - **Advanced Python:** Decorators, Namespace, Iterators, Iterable and Iteration
   - **Object-oriented programming:** classes, objects, encapsulation, static keywords, inheritance, polymorphism, and abstraction.
 - ML Libraries
-  - Numpy
+  - Numpy : [Fundamentals, Advanced, numpy Tricks, and Crash Course]
   - Pandas
   - Matplotlib
   - Seaborn
