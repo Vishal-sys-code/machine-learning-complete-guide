@@ -78,9 +78,11 @@ This repository contains the notebooks from the basic level to the production le
 - K Nearest Neighbors [Lazy Propagation]
   - Implementation of K - Nearest Neighbor
 - Imbalanced Dataset
-  - Implementation of Imbalanced Dataset
+  - Implementation of an Imbalanced Dataset
   - Random Sampling: OverSampling and UnderSampling
   - Implementation of SMOTE Analysis for Imbalanced Dataset
+- Naive Bayes
+  - Implementation of Naive Bayes Algorithm
 
 All General Code Snippet: [machine-learning.py](https://github.com/Vishal-sys-code/machine-learning-complete-guide/blob/main/machine-learning.py)
 
