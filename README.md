@@ -91,3 +91,5 @@ Machine Learning Templates [ReadMe]: [Machine_Learning_Template](https://github.
 
 ## TODO
 - Publishing notes on each algorithm step by step.
+- Implementing Bagging for Classification Problems
+- Implementing Gradient Boosting for Classification Problems
