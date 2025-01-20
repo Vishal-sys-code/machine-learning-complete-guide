@@ -1,5 +1,5 @@
 <div align="center">
-  <h1><b>CS:ML101 The Complete Machine Learning</b></h1>h1>
+  <h1><b>CS:ML101 The Complete Machine Learning</b></h1>
 </div>
 
 This repository provides a comprehensive guide to Machine Learning (ML), covering everything from foundational concepts to advanced techniques and their practical applications. It is designed to help learners understand how to approach machine learning problems, implement solutions, and optimize performance using industry-standard tools and techniques.
