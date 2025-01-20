@@ -13,7 +13,7 @@ This repository contains the notebooks from the basic level to the production le
   - **Object-oriented programming:** classes, objects, encapsulation, static keywords, inheritance, polymorphism, and abstraction.
 - ML Libraries
   - **Numpy :** [Fundamentals, Advanced, numpy Tricks, and Crash Course]
-  - **Pandas :** [Series(I & II), DataFrames(I & II)]
+  - **Pandas :** [Series(I & II), DataFrames(I & II), and Crash Course]
   - Matplotlib
   - Seaborn
 - Play With Data
