@@ -16,7 +16,7 @@ This repository provides a comprehensive guide to Machine Learning (ML), coverin
 - ML Libraries
   - **Numpy :** [Fundamentals, Advanced, numpy Tricks, and Crash Course]
   - **Pandas :** [Series(I & II), DataFrames(I & II), and Crash Course]
-  - Matplotlib
+  - **Matplotlib :** [Fundamental Plotting, Advanced Plotting, Crash Course]
   - Seaborn
 - Play With Data
   - Working with CSV
