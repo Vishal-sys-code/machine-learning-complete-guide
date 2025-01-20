@@ -1,6 +1,8 @@
-# machine-learning-complete-guide
-This repository contains the notebooks from the basic level to the production level of the machine learning process. This helps to understand how to approach the problem and the syntaxes for the data preprocessing.
+<div align="center">
+  <h1><b>CS:ML101 The Complete Machine Learning</b></h1>h1>
+</div>
 
+This repository provides a comprehensive guide to Machine Learning (ML), covering everything from foundational concepts to advanced techniques and their practical applications. It is designed to help learners understand how to approach machine learning problems, implement solutions, and optimize performance using industry-standard tools and techniques.
 
 <div align="center">
   <b>THE COMPLETE MACHINE LEARNING</b>
@@ -88,8 +90,15 @@ All General Code Snippet: [machine-learning.py](https://github.com/Vishal-sys-co
 
 Machine Learning Templates [ReadMe]: [Machine_Learning_Template](https://github.com/Vishal-sys-code/machine-learning-complete-guide/tree/main/Machine%20Learning%20Templates)
 
-
 ## TODO
 - Publishing notes on each algorithm step by step.
 - Implementing Bagging for Classification Problems
 - Implementing Gradient Boosting for Classification Problems
+
+## Contact Information
+
+If you have any questions or feedback regarding this course or the repository, feel free to reach out to me:
+
+- **Email:** [pandeyvishal.mlprof@gmail.com](mailto:pandeyvishal.mlprof@gmail.com)
+
+Feel free to open issues on GitHub if you encounter problems or have suggestions for improvements!
