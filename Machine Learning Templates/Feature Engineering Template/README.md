@@ -2,13 +2,13 @@
 This is the process of transforming the raw data into a format that is easier to understand and use.
 It has different process. Some of them are:
 1. **Feature Transformation**
-    a. *Missing Value Imputation*
-    b. *Handling Categorical Features*
-    c. *Outlier Detection*
-    d. *Scaling*
-    e. *Column Transformer*
-    f. *Function Transformer*
-    g. *Binning and Binarization*
+    - *Missing Value Imputation*
+    - *Handling Categorical Features*
+    - *Outlier Detection*
+    - *Scaling*
+    - *Column Transformer*
+    - *Function Transformer*
+    - *Binning and Binarization*
 2. **Feature Construction**
 3. **Feature Splitting**
 
