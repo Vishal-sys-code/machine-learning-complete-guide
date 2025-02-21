@@ -1,0 +1,4 @@
+1. Seperating and extracting the numerical and categorical data different by using some string functions.
+2. How to extract the month, day, week and applying operations to it. 
+3. Complete Case Analysis
+4. Missing Data Imputation: Univariate, Bivariate and all process: mean, median, mode.
