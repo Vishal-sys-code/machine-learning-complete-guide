@@ -27,3 +27,4 @@ from sklearn.model_selection import train_test_split
 1.7 Iterative Imputer
 '''
 
+# 1.1 Handling Mixed Variables
