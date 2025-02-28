@@ -148,3 +148,57 @@ def univariate_missing_value_imputation_numerical(df, arbitrary_value = -999):
                 # Use the maximum value for negative skew
                 end_value = df[col].max()
             df_end_of_distribution_imputed[col].fillna(end_value, inplace = True)
+
+    # Step 4: Plotting Before and After Imputation for Selected Columns
+    for col in cols:
+        if df[col].dtype != 'object':  # Ensure it's a numerical column
+            fig, axes = plt.subplots(1, 6, figsize=(20, 5))
+            fig.suptitle(f'Before and After Imputation for Column: {col}', fontsize=16)
+            
+            # Plot before imputation
+            sns.histplot(df[col], kde=True, ax=axes[0], color='blue')
+            axes[0].set_title(f'Before Imputation')
+
+            # Plot mean imputation
+            sns.histplot(df_mean_imputed[col], kde=True, ax=axes[1], color='green')
+            axes[1].set_title(f'Mean Imputation')
+
+            # Plot median imputation
+            sns.histplot(df_median_imputed[col], kde=True, ax=axes[2], color='orange')
+            axes[2].set_title(f'Median Imputation')
+
+            # Plot arbitrary value imputation
+            sns.histplot(df_arbitrary_imputed[col], kde=True, ax=axes[3], color='red')
+            axes[3].set_title(f'Arbitrary Value Imputation')
+
+            # Plot random value imputation
+            sns.histplot(df_random_imputed[col], kde=True, ax=axes[4], color='purple')
+            axes[4].set_title(f'Random Value Imputation')
+
+            # Plot end of distribution imputation
+            sns.histplot(df_end_of_dist_imputed[col], kde=True, ax=axes[5], color='brown')
+            axes[5].set_title(f'End of Distribution Imputation')
+
+            # Show the plot
+            plt.tight_layout()
+            plt.subplots_adjust(top=0.85)  # Adjust title to fit
+            plt.show()
+
+    # Final DataFrames after imputation
+    print("\nData after mean imputation:")
+    print(df_mean_imputed.head())
+    
+    print("\nData after median imputation:")
+    print(df_median_imputed.head())
+
+    print("\nData after arbitrary value imputation:")
+    print(df_arbitrary_imputed.head())
+
+    print("\nData after random value imputation:")
+    print(df_random_imputed.head())
+
+    print("\nData after end of distribution imputation:")
+    print(df_end_of_dist_imputed.head())
+    
+    # Returning all dataframes after different imputations
+    return df_mean_imputed, df_median_imputed, df_arbitrary_imputed, df_random_imputed, df_end_of_dist_imputed
