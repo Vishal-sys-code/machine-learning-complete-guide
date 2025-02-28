@@ -139,4 +139,12 @@ def univariate_missing_value_imputation_numerical(df, arbitrary_value = -999):
             non_null_values = df[col].dropna()
             random_values = np.random.choice(non_null_values, size = df[col].isnull().sum())
             df_random_imputed.loc[df_random_imputed[col].isnull()] = random_values
-            
+
+            # 5. Impute with end of distribution in the df_end_of_distribution_imputed dataframe
+            if df[col].min() > 0: 
+                # Use the minimum value for positive skew
+                end_value = df[col].min()
+            else:
+                # Use the maximum value for negative skew
+                end_value = df[col].max()
+            df_end_of_distribution_imputed[col].fillna(end_value, inplace = True)
