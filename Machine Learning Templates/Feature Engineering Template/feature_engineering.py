@@ -100,8 +100,12 @@ There are many ways to handle the missing values in the numerical variables:
 When to use Mean/Median (two criterias):
 - Missing completely at Random (MCAR)
 - Missing values <= 5%
+
+Arbitrary value: Impute the missing values with a fixed arbitrary value (0 or -999)
+Random Values: Impute the missing values with random values from the distribution of the variable
+End of Distribution: Impute the missing values with the minimum or maximum value in the column
 """
-def missing_value_imputation_numerical(df):
+def univariate_missing_value_imputation_numerical(df, arbitrary_value = -999):
     # Step 1: Printing or Displaying the missing values of each column in %
     missing_values = (df.isnull().sum()/len(df)) * 100
     print("Missing Values are (in %): ")
@@ -111,3 +115,14 @@ def missing_value_imputation_numerical(df):
     cols = [var for var in df.columns if df[var].isnull().mean() < 0.05 and df[var].isnull().mean() > 0]
     print("Selected columns who have less than 5% missing values: ")
     print(cols)
+
+    # Create the copies of the original dataframe for each imputation method
+    df_mean_imputed = df.copy() # For mean imputation
+    df_median_imputed = df.copy() # For median imputation
+    df_arbitrary_imputed = df.copy() # For arbitrary value imputation
+    df_random_imputed = df.copy() # For random value imputation
+    df_end_of_distribution_imputed = df.copy() # For end of distribution imputation
+
+    # Step 3: Impute the missing values with different techniques for columns that meet criteria
+    for col in cols:
+        
