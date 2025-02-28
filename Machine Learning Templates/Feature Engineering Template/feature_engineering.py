@@ -134,3 +134,9 @@ def univariate_missing_value_imputation_numerical(df, arbitrary_value = -999):
 
             # 3. Impute with arbitrary value in the df_arbitrary_imputed dataframe
             df_arbitrary_imputed[col].fillna(arbitrary_value, inplace = True)
+
+            # 4. Impute with random values in the df_random_imputed dataframe
+            non_null_values = df[col].dropna()
+            random_values = np.random.choice(non_null_values, size = df[col].isnull().sum())
+            df_random_imputed.loc[df_random_imputed[col].isnull()] = random_values
+            
