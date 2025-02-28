@@ -97,7 +97,7 @@ def complete_case_analysis(df):
 """
 There are many ways to handle the missing values in the numerical variables:
 - Univariate: Mean, Median, Arbitrary Value, Random Values, End of Distribution 
-- Bivariate: KNN Imputer, Iterative Imputer or MICE
+- Bivariate: KNN Imputer, Iterative Imputer or MICE (Multivariate Imputation by Chained Equations)
 
 When to use Mean/Median (two criterias):
 - Missing completely at Random (MCAR)
@@ -264,3 +264,11 @@ def bivariate_missing_value_imputation_numerical(df, n_neighbors=5):
 
     # Returning both dataframes after imputation
     return df_knn_imputed, df_mice_imputed
+
+# 1.3 Missing Value -> Categorical Variables
+"""
+There are two techniques to handle the missing values in the categorical variables:
+- Random Sample Imputation
+- Missing Indicator
+- Automatic Select imputer parameter
+"""
