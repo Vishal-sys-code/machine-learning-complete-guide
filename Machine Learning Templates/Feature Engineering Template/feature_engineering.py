@@ -268,7 +268,9 @@ def bivariate_missing_value_imputation_numerical(df, n_neighbors=5):
 # 1.3 Missing Value -> Categorical Variables
 """
 There are two techniques to handle the missing values in the categorical variables:
-- Random Sample Imputation
-- Missing Indicator
-- Automatic Select imputer parameter
+- Most Frequent Imputation (Mode)
+- Missing Category Imputation
+
+Let me clear that, Missing Category Imputation is not a good technique because it creates a randomness in your data.
 """
+
