@@ -202,3 +202,7 @@ def univariate_missing_value_imputation_numerical(df, arbitrary_value = -999):
     
     # Returning all dataframes after different imputations
     return df_mean_imputed, df_median_imputed, df_arbitrary_imputed, df_random_imputed, df_end_of_dist_imputed
+
+
+def bivariate_missing_value_imputation_numerical():
+    pass
