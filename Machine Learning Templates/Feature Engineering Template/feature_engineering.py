@@ -1,5 +1,8 @@
 ##################################
 #  FEATURE ENGINEERING TEMPLATE  #
+# Author : Vishal Pandey
+# Twitter: its_vayishu
+# GitHub : Vishal-Sys-code
 ##################################
 
 # Importing Libraries
@@ -87,3 +90,5 @@ def complete_case_analysis(df):
     comparison_df = pd.concat(results)
     # Display the final comparison Dataframe
     print(comparison_df)
+
+# 1.2 Missing Value -> Numerical Variables
