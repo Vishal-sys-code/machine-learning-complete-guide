@@ -205,5 +205,61 @@ def univariate_missing_value_imputation_numerical(df, arbitrary_value = -999):
     return df_mean_imputed, df_median_imputed, df_arbitrary_imputed, df_random_imputed, df_end_of_dist_imputed
 
 
-def bivariate_missing_value_imputation_numerical():
-    pass
+def bivariate_missing_value_imputation_numerical(df, n_neighbors=5):
+    """
+    Perform bivariate missing value imputation using KNN and MICE.
+    
+    Args:
+    df: pandas DataFrame with missing values
+    n_neighbors: number of neighbors to use for KNN imputation
+    
+    Returns:
+    df_knn_imputed: DataFrame after KNN imputation
+    df_mice_imputed: DataFrame after MICE imputation
+    """
+    # Step 1: Checking missing values
+    print("Missing values (in %):")
+    missing_values = (df.isnull().sum() / len(df)) * 100
+    print(missing_values)
+
+    # Step 2: KNN Imputation
+    knn_imputer = KNNImputer(n_neighbors=n_neighbors)
+    df_knn_imputed = df.copy()
+    df_knn_imputed[:] = knn_imputer.fit_transform(df)  # Perform imputation
+    print("\nData after KNN Imputation:")
+    print(df_knn_imputed.head())
+
+    # Step 3: MICE Imputation (using IterativeImputer from fancyimpute)
+    mice_imputer = IterativeImputer(max_iter=10, random_state=0)
+    df_mice_imputed = df.copy()
+    df_mice_imputed[:] = mice_imputer.fit_transform(df)  # Perform imputation
+    print("\nData after MICE Imputation:")
+    print(df_mice_imputed.head())
+
+    # Step 4: Visualize Before and After Imputation for Selected Columns
+    cols_with_missing = [col for col in df.columns if df[col].isnull().sum() > 0]
+
+    for col in cols_with_missing:
+        if df[col].dtype != 'object':  # Ensure it's a numerical column
+            fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+            fig.suptitle(f'Before and After Imputation for Column: {col}', fontsize=16)
+            
+            # Plot before imputation
+            axes[0].hist(df[col].dropna(), bins=20, color='blue', edgecolor='black')
+            axes[0].set_title(f'Before Imputation')
+            
+            # Plot after KNN imputation
+            axes[1].hist(df_knn_imputed[col], bins=20, color='green', edgecolor='black')
+            axes[1].set_title(f'KNN Imputation')
+            
+            # Plot after MICE imputation
+            axes[2].hist(df_mice_imputed[col], bins=20, color='orange', edgecolor='black')
+            axes[2].set_title(f'MICE Imputation')
+            
+            # Show the plot
+            plt.tight_layout()
+            plt.subplots_adjust(top=0.85)  # Adjust title to fit
+            plt.show()
+
+    # Returning both dataframes after imputation
+    return df_knn_imputed, df_mice_imputed
