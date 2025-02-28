@@ -32,9 +32,9 @@ If we get the missing values then we can drop the rows or columns.
 We always drop the rows if the missing values are less than 5%.
 """
 
-def complete_case_analysis():
+def complete_case_analysis(df):
     # Step 1: Printing or Displaying the missing values of each column in %
-    missing_values = df.isnull().sum()
+    missing_values = (df.isnull().sum()/len(df)) * 100
     print("Missing Values are (in %): ")
     print(missing_values)
 
@@ -57,7 +57,7 @@ def complete_case_analysis():
         # Data after CCA (Green Color)
         new_df[col].hist(bins = 50, ax = ax, color = 'green', density = True, alpha = 0.5, label = f'New {col}')
         ax.set_title(f'Histogram of {col}')
-        ax.set.xlabel(col)
+        ax.set_xlabel(col)
         ax.set_ylabel('Density')
         ax.legend()
         plt.show()
@@ -84,6 +84,6 @@ def complete_case_analysis():
             results.append(temp)
         
     # Concatenate all results into one dataframe
-    comparison_df = pd.concat(reults)
+    comparison_df = pd.concat(results)
     # Display the final comparison Dataframe
     print(comparison_df)
