@@ -125,4 +125,12 @@ def univariate_missing_value_imputation_numerical(df, arbitrary_value = -999):
 
     # Step 3: Impute the missing values with different techniques for columns that meet criteria
     for col in cols:
-        
+        if df[col].dtype != 'object': # Ensure that it's a numerical column
+            # 1. Impute with mean in the df_mean_imputed dataframe
+            df_mean_imputed[col].fillna(df_mean_imputed[col].mean(), inplace = True)
+
+            # 2. Impute with median in the df_median_imputed dataframe
+            df_median_imputed[col].fillna(df_median_imputed[col].median(), inplace = True)
+
+            # 3. Impute with arbitrary value in the df_arbitrary_imputed dataframe
+            df_arbitrary_imputed[col].fillna(arbitrary_value, inplace = True)
