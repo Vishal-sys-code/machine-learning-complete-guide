@@ -96,4 +96,8 @@ def complete_case_analysis(df):
 There are many ways to handle the missing values in the numerical variables:
 - Univariate: Mean, Median, Arbitrary Value, Random Values, End of Distribution 
 - Bivariate: KNN Imputer, Iterative Imputer or MICE
+
+When to use these (two criterias):
+- Missing completely at Random (MCAR)
+- Missing values <= 5%
 """
