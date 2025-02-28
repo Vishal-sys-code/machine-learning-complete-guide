@@ -101,3 +101,13 @@ When to use Mean/Median (two criterias):
 - Missing completely at Random (MCAR)
 - Missing values <= 5%
 """
+def missing_value_imputation_numerical(df):
+    # Step 1: Printing or Displaying the missing values of each column in %
+    missing_values = (df.isnull().sum()/len(df)) * 100
+    print("Missing Values are (in %): ")
+    print(missing_values)
+
+    # Step 2: Selecting the columns with less than 5% missing values
+    cols = [var for var in df.columns if df[var].isnull().mean() < 0.05 and df[var].isnull().mean() > 0]
+    print("Selected columns who have less than 5% missing values: ")
+    print(cols)
